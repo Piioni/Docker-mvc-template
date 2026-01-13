@@ -1,0 +1,49 @@
+services:
+  apache-php:
+    build: .
+    ports:
+      - "${APACHE_PORT:-8080}:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+    environment:
+      XDEBUG_MODE: ${XDEBUG_MODE}
+      XDEBUG_CONFIG: ${XDEBUG_CONFIG}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mysql:
+    image: ${MYSQL_IMAGE}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - datos-mvs:/var/lib/mysql
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - "${PHPMYADMIN_PORT:-8081}:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    networks:
+      - app-network
+
+volumes:
+  datos-mvs:
+
+networks:
+  app-network:
+    driver: bridge

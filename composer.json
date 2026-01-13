@@ -1,0 +1,21 @@
+{
+  "name": "mvc/project",
+  "description": "",
+  "type": "project",
+  "require": {
+    "php": ">=8.5",
+    "ext-pdo": "*",
+    "phpdocumentor/shim": "^3.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "App\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "phpdocumentor/shim": true
+    }
+  }
+}
