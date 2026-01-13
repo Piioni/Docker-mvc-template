@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "tailwind": "npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch",
+    "tailwind": "npx @tailwindcss/cli -i ./public/assets/css/input.css -o ./public/assets/css/output.css --watch",
     "build:css": "npx tailwindcss -i ./public/assets/css/input.css -o ./public/assets/css/output.css --minify",
     "build": "npm run build:css",
     "preview": "npx serve . -s"
