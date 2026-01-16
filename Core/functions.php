@@ -83,3 +83,38 @@ function old_input($key, $default = '')
 
     return is_array($old) && array_key_exists($key, $old) ? $old[$key] : $default;
 }
+
+function asset(string $path, bool $cacheBust = false): string
+{
+    // Remove leading slash if present
+    $path = ltrim($path, '/');
+
+    // Build the base URL
+    $url = '/' . $path;
+
+    // Add cache busting based on file modification time
+    if ($cacheBust) {
+        $filePath = base_path('public/' . $path);
+        if (file_exists($filePath)) {
+            $version = filemtime($filePath);
+            $url .= '?v=' . $version;
+        }
+    }
+
+    return $url;
+}
+
+function css(string $filename, bool $cacheBust = true): string
+{
+    return asset('assets/css/' . $filename, $cacheBust);
+}
+
+function js(string $filename, bool $cacheBust = true): string
+{
+    return asset('assets/js/' . $filename, $cacheBust);
+}
+
+function img(string $filename): string
+{
+    return asset('assets/img/' . $filename);
+}

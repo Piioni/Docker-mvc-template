@@ -25,7 +25,7 @@ services:
     ports:
       - "${MYSQL_PORT:-3306}:3306"
     volumes:
-      - datos-mvs:/var/lib/mysql
+      - basedatos2:/var/lib/mysql
     networks:
       - app-network
 
@@ -42,7 +42,7 @@ services:
       - app-network
 
 volumes:
-  datos-mvs:
+  basedatos2:
 
 networks:
   app-network:

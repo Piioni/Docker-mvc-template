@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title><?= $title ?></title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link rel="stylesheet" href="<?= css('output.css') ?>">
 </head>
 
 <body class="h-full">
-    <div class="min-h-full">
+<div class="min-h-full">

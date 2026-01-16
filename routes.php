@@ -1,6 +1,5 @@
 <?php
 
-
 $router->get('/', 'HomeController@index');
 
 // Auth routes
